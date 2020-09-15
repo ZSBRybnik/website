@@ -15,4 +15,4 @@ jobs:
           github-token: ${{ secrets.GITH_TOKEN }}
           image-name: zsbwebsite
           dockerfile: Dockerfile
-          env: REACT_APP_CDN_URL=${{ secrets.REACT_APP_CDN_URL }} REACT_APP_API_URL=${{ secrets.REACT_APP_CDN_URL }}
+          args: -e REACT_APP_CDN_URL=${{ secrets.REACT_APP_CDN_URL }} -e REACT_APP_API_URL=${{ secrets.REACT_APP_CDN_URL }}
