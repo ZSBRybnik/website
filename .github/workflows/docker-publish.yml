@@ -7,6 +7,8 @@ on:
     tags:
       - v*
 env:
+  REACT_APP_CDN_URL: ${{ secrets.REACT_APP_CDN_URL }}
+  REACT_APP_API_URL: ${{ secrets.REACT_APP_API_URL }}
   IMAGE_NAME: zsbwebsite
 jobs:
   push:
@@ -15,7 +17,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Build image
-        run: docker build . --file Dockerfile --tag $IMAGE_NAME
+        run: docker build . --file Dockerfile --tag $IMAGE_NAME --build-arg REACT_APP_CDN_URL=$REACT_APP_CDN_URL REACT_APP_API_URL=$REACT_APP_API_URL
       - name: Log into GitHub Container Registry
         run: echo "${{ secrets.CR_PAT }}" | docker login https://ghcr.io -u ${{ github.actor }} --password-stdin
       - name: Push image to GitHub Container Registry
