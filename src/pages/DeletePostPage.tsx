@@ -16,6 +16,7 @@ import Section from "../components/Section";
 import Form from "../components/Form";
 import GlobalContext from "../contextes/globalContext";
 import Select from "../components/Select/Select";
+import getToken from "../other/getToken";
 
 type PostAction = "deletePolish" | "deleteNotPolish";
 
@@ -187,7 +188,7 @@ const DeletePostPage: FC<DeletePostPageProps> = (): JSX.Element => {
                     {
                       method: "POST",
                       headers: {
-                        Authorization: window.localStorage.token,
+                        Authorization: getToken(),
                         "Content-Type": "application/json",
                         Accept: "application/json",
                       },

@@ -19,9 +19,8 @@ import GlobalContext, {
 } from "../../contextes/globalContext";
 import toggleDarkTheme from "../../other/toggleDarkTheme";
 import scrollTop from "../../other/scrollTop";
-import YoutubeIcon from "./DesktopTopMenuIcons/YoutubeIcon";
 
-interface DesktopTopMenuProps {}
+interface DesktopTopMenuProps { }
 
 const DesktopTopMenu: FC<DesktopTopMenuProps> = (): JSX.Element => {
   const { t }: UseTranslationResponse = useTranslation();
@@ -38,6 +37,7 @@ const DesktopTopMenu: FC<DesktopTopMenuProps> = (): JSX.Element => {
   const facebookTitle: string = t("menu.facebook");
   const vulcanTitle: string = t("menu.vulcan");
   const lessonPlanTitle: string = t("menu.lesson-plan");
+  const youtubeTitle: string = t("menu.youtube");
   const homeTitle: string = t("menu.home");
   const toDarkColorThemeTitle: string = t("menu.color-theme.to-dark");
   const toLightColorThemeTitle: string = t("menu.color-theme.to-light");
@@ -46,7 +46,20 @@ const DesktopTopMenu: FC<DesktopTopMenuProps> = (): JSX.Element => {
     : toDarkColorThemeTitle;
   return (
     <DesktopTopMenuHeader isDarkTheme={isDarkTheme}>
-      <YoutubeIcon />
+      <a
+        rel="noopener noreferrer"
+        href="https://www.youtube.com/channel/UCMzNuGK3NB6CmNn-JlRvWww"
+        aria-label={youtubeTitle}
+        title={youtubeTitle}
+      >
+        <Icon
+          path={mdiYoutube}
+          title={youtubeTitle}
+          aria-label={youtubeTitle}
+          size={iconSize}
+          color="#fff"
+        />
+      </a>
       <a
         rel="noopener noreferrer"
         href="https://www.facebook.com/rybnikzsb/"

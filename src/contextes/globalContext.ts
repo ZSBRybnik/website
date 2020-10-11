@@ -9,6 +9,7 @@ import {
 import i18n from "i18next";
 import { PostProps } from "../components/Post/Post";
 import parseJWT, { Token } from "../other/parseJWT";
+import getToken from "../other/getToken";
 
 export type GlobalContext = Context<GlobalContextCompleteValues>;
 type GlobalContextConsumer = Consumer<GlobalContextCompleteValues>;
@@ -87,7 +88,7 @@ export interface GlobalContextValues {
 }
 
 let parsedTokenRole: PrivilegeLevel;
-const token: string = window.localStorage.token;
+const token: string = getToken();
 try {
   const parsedToken: Token = parseJWT(token);
   if (parsedToken && parsedToken.role) {

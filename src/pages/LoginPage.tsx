@@ -34,6 +34,7 @@ const LoginPage: FC<LoginPageProps> = (): JSX.Element => {
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
   const [authCode, setAuthCode] = useState("");
+  const [rememberMe, setRememberMe] = useState(false);
   const title: string = isOnline ? t("login-page.title") : "Zaloguj się";
   return privilegeLevel === "unlogged" ? (
     <Page title={title}>
@@ -58,6 +59,13 @@ const LoginPage: FC<LoginPageProps> = (): JSX.Element => {
             value={authCode}
             onChange={(e) => setAuthCode(e.target.value)}
             required
+          />
+          <InputBox
+            label="Zapamiętaj mnie"
+            checked={rememberMe}
+            onChange={() => setRememberMe(!rememberMe)}
+            required
+            type="checkbox"
           />
           <Button
             title="Zaloguj się"
@@ -90,7 +98,9 @@ const LoginPage: FC<LoginPageProps> = (): JSX.Element => {
                     if (token) {
                       const { role }: Token = parseJWT(token);
                       setPrivilegeLevel(role);
-                      window.localStorage.token = token;
+                      rememberMe
+                        ? (window.localStorage.token = token)
+                        : (window.sessionStorage.token = token);
                       !isMobile && toast.success("Zalogowałeś się!");
                     } else {
                       !isMobile && errorDuringLoging();

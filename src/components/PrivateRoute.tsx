@@ -1,28 +1,23 @@
-import React, {
-  FC,
-  useEffect,
-  useState,
-} from "react";
+import React, { FC, useEffect, useState } from "react";
 import { Route, Redirect, RouteProps } from "react-router-dom";
 import { useContext, ElementType, createElement } from "react";
 import GlobalContext, {
   GlobalContextCompleteValues,
 } from "../contextes/globalContext";
 import Error404 from "../pages/Error404";
+import getToken from "../other/getToken";
 
 interface PrivateRouteProps extends RouteProps {
   forPrivilegeLevelAndHigher: "admin" | "student";
 }
 
-const PrivateRoute: FC<PrivateRouteProps> = (
-  {
-    component,
-    forPrivilegeLevelAndHigher,
-    ...rest
-  }: PrivateRouteProps,
-): JSX.Element => {
+const PrivateRoute: FC<PrivateRouteProps> = ({
+  component,
+  forPrivilegeLevelAndHigher,
+  ...rest
+}: PrivateRouteProps): JSX.Element => {
   const { privilegeLevelDispatcher }: GlobalContextCompleteValues = useContext(
-    GlobalContext,
+    GlobalContext
   );
   const [privilegeLevel, setPrivilegeLevel] = privilegeLevelDispatcher;
   const [isTokenValid, setIsTokenValid] = useState(false);
@@ -36,13 +31,13 @@ const PrivateRoute: FC<PrivateRouteProps> = (
           {
             method: "POST",
             headers: {
-              "Authorization": window.localStorage.token,
-              "Accept": "application/json",
+              Authorization: getToken(),
+              Accept: "application/json",
               "Content-Type": "application/json",
             },
             signal: signal,
             cache: "no-store",
-          },
+          }
         );
         const { status }: Response = res;
         if (status !== 200) {
@@ -55,28 +50,35 @@ const PrivateRoute: FC<PrivateRouteProps> = (
         setPrivilegeLevel("unlogged");
       }
     };
-    if (window.localStorage.token) {
+    if (getToken()) {
       verifyToken();
     } else {
       setIsTokenValid(false);
     }
   }, [setPrivilegeLevel]);
-  return isTokenValid || privilegeLevel === "unlogged"
-    ? (<Route
+  return isTokenValid || privilegeLevel === "unlogged" ? (
+    <Route
       {...rest}
       render={(routeProps): JSX.Element =>
         forPrivilegeLevelAndHigher === privilegeLevel ||
-        privilegeLevel === "admin"
-          ? component
-            ? createElement(component as ElementType, routeProps)
-            : <></>
-          : forPrivilegeLevelAndHigher === "admin"
-          ? <Error404 {...routeProps} />
-          : <Redirect
+        privilegeLevel === "admin" ? (
+          component ? (
+            createElement(component as ElementType, routeProps)
+          ) : (
+            <></>
+          )
+        ) : forPrivilegeLevelAndHigher === "admin" ? (
+          <Error404 {...routeProps} />
+        ) : (
+          <Redirect
             to={{ pathname: "/login", state: { from: routeProps.location } }}
-          />}
-    />)
-    : <></>;
+          />
+        )
+      }
+    />
+  ) : (
+    <></>
+  );
 };
 
 export default PrivateRoute;

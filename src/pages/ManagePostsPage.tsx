@@ -18,6 +18,7 @@ import Form from "../components/Form";
 import GlobalContext from "../contextes/globalContext";
 import InputBox from "../components/InputBox/InputBox";
 import Select from "../components/Select/Select";
+import getToken from "../other/getToken";
 
 type PostAction =
   | "addPolish"
@@ -302,7 +303,7 @@ const ManagePostsPage: FC<ManagePostsPageProps> = (): JSX.Element => {
                     {
                       method: "POST",
                       headers: {
-                        Authorization: window.localStorage.token,
+                        Authorization: getToken(),
                         "Content-Type": "application/json",
                         Accept: "application/json",
                       },

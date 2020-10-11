@@ -19,34 +19,17 @@ const OuterLink: FC<OuterLinkProps> = ({
     GlobalContext
   );
   const [isDarkTheme]: IsDarkThemeDispatcher = isDarkThemeDispatcher;
-  const [isHovered, setIsHovered] = useState(false);
-  let hoverTimeout: number;
   return (
-    <>
-      {isHovered && (
-        <Helmet>
-          <link rel="preload" href={route} />
-        </Helmet>
-      )}
-      <a
-        href={route}
-        rel="noopener noreferrer"
-        title={title}
-        aria-label={title}
-        onMouseEnter={(): void => {
-          hoverTimeout = setTimeout(() => {
-            setIsHovered(true);
-          }, 100);
-        }}
-        onMouseLeave={(): void => {
-          clearTimeout(hoverTimeout);
-        }}
-      >
-        <SlideOutMenuItemWrapper isDarkTheme={isDarkTheme}>
-          {title}
-        </SlideOutMenuItemWrapper>
-      </a>
-    </>
+    <a
+      href={route}
+      rel="noopener noreferrer"
+      title={title}
+      aria-label={title}
+    >
+      <SlideOutMenuItemWrapper isDarkTheme={isDarkTheme}>
+        {title}
+      </SlideOutMenuItemWrapper>
+    </a>
   );
 };
 

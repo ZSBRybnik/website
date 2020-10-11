@@ -1,8 +1,14 @@
 import styled from "styled-components";
 
-const InputBoxInput = styled.input`
+interface InputBoxInputProps {
+  type: string;
+}
+
+const InputBoxInput = styled.input<InputBoxInputProps>`
   padding: 2.5px;
-  width: 100%;
+  width: ${({ type }) => (type === "checkbox" ? "auto" : "100%")};
+  height: 19px;
+  margin-left: ${({ type }) => (type === "checkbox" ? "5px" : "inherit")};
   outline: 0;
 `;
 

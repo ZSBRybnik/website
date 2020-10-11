@@ -97,7 +97,7 @@ const AddPostPage: LazyExoticComponent<FC<AddPostPageProps>> = lazy(
   () => import("./pages/AddPostPage")
 );
 
-interface AppProps {}
+interface AppProps { }
 
 type IsDarkThemeDispatcher = [boolean, Dispatch<SetStateAction<boolean>>];
 type IsMobileDispatcher = [boolean, Dispatch<SetStateAction<boolean>>];

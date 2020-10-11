@@ -14,7 +14,7 @@ type SubpageActionDispatcher = [
   SetStateAction<Dispatch<SubpageAction>>
 ];
 
-export interface AddSubpagePageProps {}
+export interface AddSubpagePageProps { }
 
 const AddSubpagePage: FC<AddSubpagePageProps> = () => {
   const title: string = "Dodaj podstronę";
@@ -119,7 +119,7 @@ const AddSubpagePage: FC<AddSubpagePageProps> = () => {
               )}
             </>
           )}
-          <Button title="Dodaj postronę" icon={mdiPlus} onClick={() => {}} />
+          <Button title="Dodaj postronę" icon={mdiPlus} onClick={() => { }} />
         </Form>
       </Section>
     </Page>

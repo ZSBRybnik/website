@@ -1,22 +1,22 @@
-import React, {
-  FC,
-  InputHTMLAttributes,
-} from "react";
+import React, { FC, InputHTMLAttributes } from "react";
 import InputBoxLabel from "./InputBoxLabel";
 import InputBoxInput from "./InputBoxInput";
+import InputBoxWrapper from "./InputBoxWrapper";
 
 interface InputBoxProps extends InputHTMLAttributes<HTMLInputElement> {
   label: string;
 }
 
-const InputBox: FC<InputBoxProps> = (
-  { label, ...rest }: InputBoxProps,
-): JSX.Element => {
+const InputBox: FC<InputBoxProps> = ({
+  label,
+  type,
+  ...rest
+}: InputBoxProps): JSX.Element => {
   return (
-    <div>
+    <InputBoxWrapper type={type}>
       <InputBoxLabel>{label}</InputBoxLabel>
-      <InputBoxInput {...rest} />
-    </div>
+      <InputBoxInput {...rest} type={type as string} />
+    </InputBoxWrapper>
   );
 };
 

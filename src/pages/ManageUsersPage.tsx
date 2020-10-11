@@ -15,6 +15,7 @@ import Button from "../components/Button/Button";
 import { mdiPlus, mdiPencil, mdiDelete } from "@mdi/js";
 import GlobalContext from "../contextes/globalContext";
 import { toast } from "react-toastify";
+import getToken from "../other/getToken";
 
 type UserAction = "addUser" | "deleteUser" | "editUser";
 
@@ -132,7 +133,7 @@ const ManageUsersPage: FC<ManageUsersPageProps> = (): JSX.Element => {
                     {
                       method: "POST",
                       headers: {
-                        Authorization: window.localStorage.token,
+                        Authorization: getToken(),
                         "Content-Type": "application/json",
                         Accept: "application/json",
                       },

@@ -34,43 +34,26 @@ const InnerLink: FC<InnerLinkProps> = ({
     setIsSlideOutMenuOpen,
   ]: IsSlideOutMenuOpenDispatcher = isSlideOutMenuOpenDispatcher;
   const [isMobile]: IsMobileDispatcher = isMobileDispatcher;
-  const [isHovered, setIsHovered] = useState(false);
-  let hoverTimeout: number;
   return (
     <>
-      {(onlyForMobile && isMobile) || !onlyForMobile ? (
-        <>
-          {isHovered && (
-            <Helmet>
-              <link rel="preload" href={route} />
-            </Helmet>
-          )}
-          <Link
-            to={route}
-            title={title}
-            aria-label={title}
-            onClick={(): void => {
-              scrollTop();
-              setIsSlideOutMenuOpen(false);
-              if (onClick) {
-                onClick();
-              }
-            }}
-            onMouseEnter={(): void => {
-              hoverTimeout = setTimeout(() => {
-                setIsHovered(true);
-              }, 100);
-            }}
-            onMouseLeave={(): void => {
-              clearTimeout(hoverTimeout);
-            }}
-          >
-            <SlideOutMenuItemWrapper isDarkTheme={isDarkTheme}>
-              {title}
-            </SlideOutMenuItemWrapper>
-          </Link>
-        </>
-      ) : null}
+      {((onlyForMobile && isMobile) || !onlyForMobile) && (
+        <Link
+          to={route}
+          title={title}
+          aria-label={title}
+          onClick={(): void => {
+            scrollTop();
+            setIsSlideOutMenuOpen(false);
+            if (onClick) {
+              onClick();
+            }
+          }}
+        >
+          <SlideOutMenuItemWrapper isDarkTheme={isDarkTheme}>
+            {title}
+          </SlideOutMenuItemWrapper>
+        </Link>
+      )}
     </>
   );
 };

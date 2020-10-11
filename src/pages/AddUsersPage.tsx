@@ -8,6 +8,7 @@ import InputBox from "../components/InputBox/InputBox";
 import Button from "../components/Button/Button";
 import { mdiPlus } from "@mdi/js";
 import { toast } from "react-toastify";
+import getToken from "../other/getToken";
 
 export interface AddUsersPageProps {}
 
@@ -61,7 +62,7 @@ const AddUsersPage: FC<AddUsersPageProps> = (): JSX.Element => {
                     {
                       method: "POST",
                       headers: {
-                        Authorization: window.localStorage.token,
+                        Authorization: getToken(),
                         "Content-Type": "application/json",
                         Accept: "application/json",
                       },
