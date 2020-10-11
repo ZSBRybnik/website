@@ -36,7 +36,7 @@ const Link: FC<LinkProps> = ({
     <>
       {isHovered && (
         <Helmet>
-          <link rel="preload" href={href} />
+          <link rel="prerender" href={href} />
         </Helmet>
       )}
       <LinkWrapper
