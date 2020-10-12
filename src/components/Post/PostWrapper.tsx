@@ -13,10 +13,11 @@ const PostWrapper: PostWrapperType = styled.div<PostWrapperProps>`
   width: 100%;
   display: flex;
   margin-bottom: ${({ isLast }: PostWrapperProps): string =>
-  isLast ? "0" : "15px"};
+    isLast ? "0" : "15px"};
+  color: ${({ isDarkTheme }: PostWrapperProps): string => isDarkTheme ? "#fff" : "#111"};
   &:hover {
     background: ${({ isDarkTheme }: PostWrapperProps): string =>
-  isDarkTheme ? "#333" : "#ddd"};
+    isDarkTheme ? "#333" : "#ddd"};
   }
   &:last-of-type {
     margin-bottom: 0;
