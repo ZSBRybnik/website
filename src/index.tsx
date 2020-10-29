@@ -10,16 +10,20 @@ type RootElement = HTMLElement | null;
 
 export const rootElement: RootElement = document.getElementById("root");
 
-initTranslations();
-consoleGreeting();
+const initApp = async () => {
+  await initTranslations();
+  consoleGreeting();
 
-render(
-  <StrictMode>
-    <Suspense fallback={<Loader width="100vw" height="100vh" />}>
-      <App />
-    </Suspense>
-  </StrictMode>,
-  rootElement
-);
+  render(
+    <StrictMode>
+      <Suspense fallback={<Loader width="100vw" height="100vh" />}>
+        <App />
+      </Suspense>
+    </StrictMode>,
+    rootElement
+  );
 
-serviceWorker.register();
+  serviceWorker.register();
+}
+
+initApp();
