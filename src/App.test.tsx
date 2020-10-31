@@ -1,17 +1,12 @@
-import React, { StrictMode, Suspense } from "react";
+import React from "react";
 import { render, screen } from "@testing-library/react";
 import App from "./App";
-import Loader from "./components/Loader/Loader";
+import initTranslations from "./other/i18next";
 
 describe("App", () => {
   test("App renders", async () => {
-    render(
-      <StrictMode>
-        <Suspense fallback={<Loader width="100vw" height="100vh" />}>
-            <App />
-        </Suspense>
-      </StrictMode>
-    );
+    const i18next = await initTranslations();
+    render(<App i18next={i18next} />);
     screen.debug();
   });
 });

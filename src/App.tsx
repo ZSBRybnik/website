@@ -7,6 +7,7 @@ import React, {
   Suspense,
   lazy,
   LazyExoticComponent,
+  StrictMode,
 } from "react";
 import GlobalStyle from "./components/GlobalStyle";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
@@ -50,6 +51,9 @@ import { AddUsersPageProps } from "./pages/AddUsersPage";
 import { AddPostPageProps } from "./pages/AddPostPage";
 import AddSubpagePage from "./pages/AddSubpagePage";
 import DeletePostPage from "./pages/DeletePostPage";
+import Loader from "./components/Loader/Loader";
+import { I18nextProvider } from "react-i18next";
+import { i18n } from "i18next";
 
 const ToastContainer: LazyExoticComponent<FC<ToastContainerProps>> = lazy(
   async () => {
@@ -97,7 +101,9 @@ const AddPostPage: LazyExoticComponent<FC<AddPostPageProps>> = lazy(
   () => import("./pages/AddPostPage")
 );
 
-interface AppProps { }
+interface AppProps {
+  i18next: i18n;
+}
 
 type IsDarkThemeDispatcher = [boolean, Dispatch<SetStateAction<boolean>>];
 type IsMobileDispatcher = [boolean, Dispatch<SetStateAction<boolean>>];
@@ -127,7 +133,7 @@ const {
   privilegeLevel,
 }: GlobalContextValues = initialGlobalStoreValue;
 
-const App: FC<AppProps> = (): JSX.Element => {
+const App: FC<AppProps> = ({ i18next }: AppProps): JSX.Element => {
   const [
     isDarkThemeLocal,
     setIsDarkThemeLocal,
@@ -215,117 +221,130 @@ const App: FC<AppProps> = (): JSX.Element => {
     };
   }, [isMobileLocal]);
   return (
-    <HelmetProvider>
-      <GlobalContextProvider
-        value={{
-          isDarkThemeDispatcher: [isDarkThemeLocal, setIsDarkThemeLocal],
-          isMobileDispatcher: [isMobileLocal, setIsMobileLocal],
-          isSlideOutMenuOpenDispatcher: [
-            isSlideOutMenuOpenLocal,
-            setIsSlideOutMenuOpenLocal,
-          ],
-          titleDispatcher: [titleLocal, setTitleLocal],
-          isOnlineDispatcher: [isOnlineLocal, setIsOnlineLocal],
-          languageDispatcher: [languageLocal, setLanguageLocal],
-          postsListDispatcher: [postsListLocal, setPostsListLocal],
-          toSubtractDispatcher: [toSubtractLocal, setToSubtractLocal],
-          subpagesDispatcher: [subpagesLocal, setSubpagesLocal],
-          postsDispatcher: [postsLocal, setPostsLocal],
-          privilegeLevelDispatcher: [
-            privilegeLevelLocal,
-            setPrivilegeLevelLocal,
-          ],
-        }}
-      >
-        <BrowserRouter>
-          <GlobalStyle isDarkTheme={isDarkThemeLocal} />
-          {isMobileLocal ? null : (
-            <Overlay
-              onClick={(): void => setIsSlideOutMenuOpenLocal(false)}
-              isSlideOutMenuOpen={isSlideOutMenuOpenLocal}
-            />
-          )}
-          {isMobileLocal ? <MobileUpsideMenu /> : <DesktopTopMenu />}
-          <SlideOutMenuButton />
-          {isMobileLocal && <MobileColorThemeButton />}
-          <SlideOutMenu />
-          <MainSection>
-            <MainSectionContent>
-              <Suspense fallback={<></>}>
-                <Switch>
-                  <Route path="/" exact component={MainPage} />
-                  <Route path="/subpage" exact component={Subpage} />
-                  <Route path="/subpage/:route" exact component={Subpage} />
-                  <Route path="/post" exact component={PostPage} />
-                  <Route path="/post/:id" exact component={PostPage} />
-                  <Route path="/login" exact component={LoginPage} />
-                  <Route
-                    path="/reset-password"
-                    exact
-                    component={ResetPasswordPage}
+    <StrictMode>
+      <Suspense fallback={<Loader width="100vw" height="100vh" />}>
+        <I18nextProvider i18n={i18next}>
+          <HelmetProvider>
+            <GlobalContextProvider
+              value={{
+                isDarkThemeDispatcher: [isDarkThemeLocal, setIsDarkThemeLocal],
+                isMobileDispatcher: [isMobileLocal, setIsMobileLocal],
+                isSlideOutMenuOpenDispatcher: [
+                  isSlideOutMenuOpenLocal,
+                  setIsSlideOutMenuOpenLocal,
+                ],
+                titleDispatcher: [titleLocal, setTitleLocal],
+                isOnlineDispatcher: [isOnlineLocal, setIsOnlineLocal],
+                languageDispatcher: [languageLocal, setLanguageLocal],
+                postsListDispatcher: [postsListLocal, setPostsListLocal],
+                toSubtractDispatcher: [toSubtractLocal, setToSubtractLocal],
+                subpagesDispatcher: [subpagesLocal, setSubpagesLocal],
+                postsDispatcher: [postsLocal, setPostsLocal],
+                privilegeLevelDispatcher: [
+                  privilegeLevelLocal,
+                  setPrivilegeLevelLocal,
+                ],
+              }}
+            >
+              <BrowserRouter>
+                <GlobalStyle isDarkTheme={isDarkThemeLocal} />
+                {isMobileLocal ? null : (
+                  <Overlay
+                    onClick={(): void => setIsSlideOutMenuOpenLocal(false)}
+                    isSlideOutMenuOpen={isSlideOutMenuOpenLocal}
                   />
-                  <PrivateRoute
-                    path="/add-post"
-                    exact
-                    forPrivilegeLevelAndHigher="admin"
-                    component={AddPostPage}
+                )}
+                {isMobileLocal ? <MobileUpsideMenu /> : <DesktopTopMenu />}
+                <SlideOutMenuButton />
+                {isMobileLocal && <MobileColorThemeButton />}
+                <SlideOutMenu />
+                <MainSection>
+                  <MainSectionContent>
+                    <Suspense fallback={<></>}>
+                      <Switch>
+                        <Route path="/" exact component={MainPage} />
+                        <Route path="/subpage" exact component={Subpage} />
+                        <Route
+                          path="/subpage/:route"
+                          exact
+                          component={Subpage}
+                        />
+                        <Route path="/post" exact component={PostPage} />
+                        <Route path="/post/:id" exact component={PostPage} />
+                        <Route path="/login" exact component={LoginPage} />
+                        <Route
+                          path="/reset-password"
+                          exact
+                          component={ResetPasswordPage}
+                        />
+                        <PrivateRoute
+                          path="/add-post"
+                          exact
+                          forPrivilegeLevelAndHigher="admin"
+                          component={AddPostPage}
+                        />
+                        <PrivateRoute
+                          path="/delete-post"
+                          exact
+                          forPrivilegeLevelAndHigher="admin"
+                          component={DeletePostPage}
+                        />
+                        <PrivateRoute
+                          path="/add-subpage"
+                          exact
+                          forPrivilegeLevelAndHigher="admin"
+                          component={AddSubpagePage}
+                        />
+                        <PrivateRoute
+                          exact
+                          path="/manage-posts"
+                          forPrivilegeLevelAndHigher="admin"
+                          component={ManagePostsPage}
+                        />
+                        <PrivateRoute
+                          exact
+                          path="/manage-users"
+                          forPrivilegeLevelAndHigher="admin"
+                          component={ManageUsersPage}
+                        />
+                        <PrivateRoute
+                          exact
+                          path="/add-users"
+                          forPrivilegeLevelAndHigher="admin"
+                          component={AddUsersPage}
+                        />
+                        <PrivateRoute
+                          exact
+                          path="/manage-subpages"
+                          forPrivilegeLevelAndHigher="admin"
+                          component={ManageSubpagesPage}
+                        />
+                        <PrivateRoute
+                          exact
+                          path="/manage-lesson-plan"
+                          forPrivilegeLevelAndHigher="admin"
+                          component={ManageLessonPlanPage}
+                        />
+                        <Route component={Error404} />
+                      </Switch>
+                    </Suspense>
+                    {!isMobileLocal && <Presentation />}
+                  </MainSectionContent>
+                  {!isMobileLocal && <MainSectionBottomSpacer />}
+                </MainSection>
+                {isMobileLocal && <MobileBottomMenu />}
+                <Suspense fallback={<></>}>
+                  <ToastContainer
+                    position="bottom-right"
+                    pauseOnFocusLoss={false}
                   />
-                  <PrivateRoute
-                    path="/delete-post"
-                    exact
-                    forPrivilegeLevelAndHigher="admin"
-                    component={DeletePostPage}
-                  />
-                  <PrivateRoute
-                    path="/add-subpage"
-                    exact
-                    forPrivilegeLevelAndHigher="admin"
-                    component={AddSubpagePage}
-                  />
-                  <PrivateRoute
-                    exact
-                    path="/manage-posts"
-                    forPrivilegeLevelAndHigher="admin"
-                    component={ManagePostsPage}
-                  />
-                  <PrivateRoute
-                    exact
-                    path="/manage-users"
-                    forPrivilegeLevelAndHigher="admin"
-                    component={ManageUsersPage}
-                  />
-                  <PrivateRoute
-                    exact
-                    path="/add-users"
-                    forPrivilegeLevelAndHigher="admin"
-                    component={AddUsersPage}
-                  />
-                  <PrivateRoute
-                    exact
-                    path="/manage-subpages"
-                    forPrivilegeLevelAndHigher="admin"
-                    component={ManageSubpagesPage}
-                  />
-                  <PrivateRoute
-                    exact
-                    path="/manage-lesson-plan"
-                    forPrivilegeLevelAndHigher="admin"
-                    component={ManageLessonPlanPage}
-                  />
-                  <Route component={Error404} />
-                </Switch>
-              </Suspense>
-              {!isMobileLocal && <Presentation />}
-            </MainSectionContent>
-            {!isMobileLocal && <MainSectionBottomSpacer />}
-          </MainSection>
-          {isMobileLocal && <MobileBottomMenu />}
-          <Suspense fallback={<></>}>
-            <ToastContainer position="bottom-right" pauseOnFocusLoss={false} />
-          </Suspense>
-        </BrowserRouter>
-      </GlobalContextProvider>
-    </HelmetProvider>
+                </Suspense>
+              </BrowserRouter>
+            </GlobalContextProvider>
+          </HelmetProvider>
+        </I18nextProvider>
+      </Suspense>
+    </StrictMode>
   );
 };
 

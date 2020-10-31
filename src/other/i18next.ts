@@ -42,7 +42,6 @@ export const setupTranslation: SetupTranslation = async <T extends Module>(
   modules.forEach((module: T) => {
     i18next = i18next.use(module);
   });
-  console.log(options);
   await i18next.init(options);
   return i18next;
 };
