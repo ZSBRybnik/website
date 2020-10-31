@@ -8,9 +8,9 @@ import MarkdownChart from "../components/Chart/MarkdownChart";
 import Table from "../components/Table/Table";
 import TikTok from "../components/TikTok/TikTok";
 import Embed from "../components/Embed/Embed";
-import { MarkdownOptions } from "markdown-to-jsx";
+import { MarkdownToJSX } from "markdown-to-jsx";
 
-const markdownOptions: MarkdownOptions = {
+const markdownOptions: MarkdownToJSX.Options = {
   overrides: {
     ThreejsView: {
       component: ThreejsView,
