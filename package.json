@@ -69,6 +69,6 @@
     "better-docs": "^2.3.2",
     "depcheck": "^1.2.0",
     "jsdoc": "^3.6.5",
-    "typescript": "^4.0.5"
+    "typescript": "^4.1.3"
   }
 }
