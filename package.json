@@ -54,7 +54,7 @@
     "@testing-library/jest-dom": "^5.11.6",
     "@testing-library/react": "^11.2.2",
     "@testing-library/user-event": "^12.6.0",
-    "@types/chart.js": "^2.9.27",
+    "@types/chart.js": "^2.9.28",
     "@types/fslightbox-react": "^1.4.0",
     "@types/i18next-xhr-backend": "^1.4.2",
     "@types/jest": "^26.0.15",
@@ -68,7 +68,7 @@
     "audit-ci": "^3.1.1",
     "better-docs": "^2.3.2",
     "depcheck": "^1.3.1",
-    "jsdoc": "^3.6.5",
-    "typescript": "^4.0.5"
+    "jsdoc": "^3.6.6",
+    "typescript": "^4.1.3"
   }
 }
