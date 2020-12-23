@@ -54,7 +54,7 @@
     "@testing-library/jest-dom": "^5.11.6",
     "@testing-library/react": "^11.2.2",
     "@testing-library/user-event": "^12.6.0",
-    "@types/chart.js": "^2.9.28",
+    "@types/chart.js": "^2.9.29",
     "@types/fslightbox-react": "^1.4.0",
     "@types/i18next-xhr-backend": "^1.4.2",
     "@types/jest": "^26.0.15",
