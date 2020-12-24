@@ -15,7 +15,7 @@
     "push.js": "^1.0.12",
     "react": "^16.14.0",
     "react-chartjs-2": "^2.11.1",
-    "react-dom": "^16.13.1",
+    "react-dom": "^16.14.0",
     "react-embed": "^3.3.2",
     "react-helmet-async": "^1.0.7",
     "react-i18next": "^11.7.2",
