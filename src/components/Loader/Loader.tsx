@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import LoaderWrapper from "./LoaderWrapper";
 import LoaderImage from "./LoaderImage";
 

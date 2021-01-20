@@ -1,10 +1,4 @@
-import React, {
-  useState,
-  FC,
-  useContext,
-  Dispatch,
-  SetStateAction,
-} from "react";
+import { useState, FC, useContext, Dispatch, SetStateAction } from "react";
 import FsLightbox, { SourceType } from "fslightbox-react";
 import GalleryWrapper from "./GalleryWrapper";
 import GalleryButton from "./GalleryButton";

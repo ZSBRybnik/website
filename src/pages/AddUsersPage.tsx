@@ -1,4 +1,4 @@
-import React, { FC, useContext, useState } from "react";
+import { FC, useContext, useState } from "react";
 import GlobalContext from "../contextes/globalContext";
 import Page from "../components/Page";
 import Section from "../components/Section";

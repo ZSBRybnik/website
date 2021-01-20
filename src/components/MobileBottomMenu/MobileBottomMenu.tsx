@@ -1,4 +1,4 @@
-import React, { useContext, FC } from "react";
+import { useContext, FC } from "react";
 import MobileBottomMenuWrapper from "./MobileBottomMenuWrapper";
 import GlobalContext, {
   GlobalContextCompleteValues,
@@ -16,13 +16,15 @@ interface MobileBottomMenuProps {}
 
 const MobileBottomMenu: FC<MobileBottomMenuProps> = (): JSX.Element => {
   const { t }: UseTranslationResponse = useTranslation();
-  const { isDarkThemeDispatcher, isSlideOutMenuOpenDispatcher }:
-    GlobalContextCompleteValues = useContext(
-      GlobalContext,
-    );
+  const {
+    isDarkThemeDispatcher,
+    isSlideOutMenuOpenDispatcher,
+  }: GlobalContextCompleteValues = useContext(GlobalContext);
   const [isDarkTheme]: IsDarkThemeDispatcher = isDarkThemeDispatcher;
-  const [, setIsSlideOutMenuOpen]: IsSlideOutMenuOpenDispatcher =
-    isSlideOutMenuOpenDispatcher;
+  const [
+    ,
+    setIsSlideOutMenuOpen,
+  ]: IsSlideOutMenuOpenDispatcher = isSlideOutMenuOpenDispatcher;
   const homeTitle: string = t("menu.home");
   const vulcanTitle: string = t("menu.vulcan");
   const lessonPlanTitle: string = t("menu.lesson-plan");

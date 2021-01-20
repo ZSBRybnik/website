@@ -1,4 +1,4 @@
-import React, {
+import {
   FC,
   useEffect,
   useState,
@@ -26,29 +26,29 @@ type EmbeddedTweet = HTMLElement | null;
 
 const Embed: FC<EmbedProps> = ({ url, isTwitter }: EmbedProps): JSX.Element => {
   const { isDarkThemeDispatcher }: GlobalContextCompleteValues = useContext(
-    GlobalContext,
+    GlobalContext
   );
   const [isDarkTheme]: IsDarkThemeDispatcher = isDarkThemeDispatcher;
   const [isFixed, setIsFixed]: IsFixedDispatcher = useState(
-    false,
+    false
   ) as IsFixedDispatcher;
   useEffect(() => {
     const tryToFixSize: TryToFixSize = (): void => {
       try {
         const firstElement: FirstElement = document.querySelector(
-          "twitter-widget",
+          "twitter-widget"
         );
         if (firstElement === null) {
           setTimeout(tryToFixSize, 250);
         }
         const elements: NodeListOf<Element> = document.querySelectorAll(
-          "twitter-widget",
+          "twitter-widget"
         );
         let i: number = 0;
         for (i; i < elements!.length; i++) {
           const shadowRoot: ShadowRootEl = elements[i]!.shadowRoot;
           const embeddedTweet: EmbeddedTweet = shadowRoot!.querySelector(
-            ".EmbeddedTweet",
+            ".EmbeddedTweet"
           );
           embeddedTweet!.style.maxWidth = "100%";
         }

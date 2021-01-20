@@ -14,19 +14,20 @@ type SubpageActionDispatcher = [
   SetStateAction<Dispatch<SubpageAction>>
 ];
 
-export interface AddSubpagePageProps { }
+export interface AddSubpagePageProps {}
 
 const AddSubpagePage: FC<AddSubpagePageProps> = () => {
   const title: string = "Dodaj podstronę";
-  const [subpageAction, setSubpageAction]: SubpageActionDispatcher = useState(
-    "addPolish" as SubpageAction
-  );
+  const [
+    ,
+    /*subpageAction*/ setSubpageAction,
+  ]: SubpageActionDispatcher = useState("addPolish" as SubpageAction);
   const [subpageTitle, setSubpageTitle] = useState("");
   const [subpageRoute, setSetSubpageRoute] = useState("");
-  const [subpageDisplayTitle, setSubpageDisplayTitle] = useState(true);
+  const [, /*subpageDisplayTitle*/ setSubpageDisplayTitle] = useState(true);
   const [createMenuLink, setCreateMenuLink] = useState(true);
   const [menuLinkName, setMenuLinkName] = useState("");
-  const [menuLinkCategory, setMenuLinkCategory] = useState("");
+  const [, /*menuLinkCategory*/ setMenuLinkCategory] = useState("");
   const [menuNewCategory, setMenuNewCategory] = useState(false);
   return (
     <Page title={title}>
@@ -119,7 +120,7 @@ const AddSubpagePage: FC<AddSubpagePageProps> = () => {
               )}
             </>
           )}
-          <Button title="Dodaj postronę" icon={mdiPlus} onClick={() => { }} />
+          <Button title="Dodaj postronę" icon={mdiPlus} onClick={() => {}} />
         </Form>
       </Section>
     </Page>

@@ -1,7 +1,4 @@
-import React, {
-  FC,
-  useContext,
-} from "react";
+import { FC, useContext } from "react";
 import { Link } from "react-router-dom";
 import scrollTop from "../../other/scrollTop";
 import PostWrapper from "./PostWrapper";
@@ -23,11 +20,16 @@ export interface PostProps {
   isLast?: boolean;
 }
 
-const Post: FC<PostProps> = (
-  { id, title, introduction, img, imgAlt, isLast }: PostProps,
-): JSX.Element => {
+const Post: FC<PostProps> = ({
+  id,
+  title,
+  introduction,
+  img,
+  imgAlt,
+  isLast,
+}: PostProps): JSX.Element => {
   const { isDarkThemeDispatcher }: GlobalContextCompleteValues = useContext(
-    GlobalContext,
+    GlobalContext
   );
   const [isDarkTheme]: IsDarkThemeDispatcher = isDarkThemeDispatcher;
   const path: string = `/post/${id}`;
@@ -51,12 +53,8 @@ const Post: FC<PostProps> = (
           />
         </PostImage>
         <PostTextWrapper>
-          <PostTitle>
-            {title}
-          </PostTitle>
-          <PostHeader>
-            {introduction}
-          </PostHeader>
+          <PostTitle>{title}</PostTitle>
+          <PostHeader>{introduction}</PostHeader>
         </PostTextWrapper>
       </PostWrapper>
     </Link>

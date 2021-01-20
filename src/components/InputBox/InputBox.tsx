@@ -1,4 +1,4 @@
-import React, { FC, InputHTMLAttributes } from "react";
+import { FC, InputHTMLAttributes } from "react";
 import InputBoxLabel from "./InputBoxLabel";
 import InputBoxInput from "./InputBoxInput";
 import InputBoxWrapper from "./InputBoxWrapper";

@@ -1,7 +1,5 @@
-import React, { FC, useContext } from "react";
-import ChartComponent, {
-  ChartComponentProps,
-} from "react-chartjs-2";
+import { FC, useContext } from "react";
+import ChartComponent, { ChartComponentProps } from "react-chartjs-2";
 import ChartWrapper from "./ChartWrapper";
 import GlobalContext, {
   GlobalContextCompleteValues,
@@ -12,7 +10,7 @@ interface ChartProps extends ChartComponentProps {}
 
 const Chart: FC<ChartProps> = (props: ChartProps): JSX.Element => {
   const { isDarkThemeDispatcher }: GlobalContextCompleteValues = useContext(
-    GlobalContext,
+    GlobalContext
   );
   const [isDarkTheme]: IsDarkThemeDispatcher = isDarkThemeDispatcher;
   return (

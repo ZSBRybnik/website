@@ -1,4 +1,4 @@
-import React, {
+import {
   useContext,
   useState,
   useEffect,
@@ -128,7 +128,7 @@ const SlideOutMenu: FC<SlideOutMenuProps> = (): JSX.Element => {
       }
     };
     tryRequest();
-  }, [language, setRoutes]);
+  }, [routes, language, setRoutes]);
   return (
     <SlideOutMenuWrapper
       isDarkTheme={isDarkTheme}

@@ -7,7 +7,6 @@ import {
   Dispatch,
   useCallback,
 } from "react";
-import React from "react";
 import Page from "../components/Page";
 import { mdiPlus } from "@mdi/js";
 import { toast } from "react-toastify";

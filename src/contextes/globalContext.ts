@@ -1,7 +1,6 @@
 import {
   createContext,
   Context,
-  Consumer,
   Provider,
   Dispatch,
   SetStateAction,
@@ -12,7 +11,6 @@ import parseJWT, { Token } from "../other/parseJWT";
 import getToken from "../other/getToken";
 
 export type GlobalContext = Context<GlobalContextCompleteValues>;
-type GlobalContextConsumer = Consumer<GlobalContextCompleteValues>;
 type GlobalContextProvider = Provider<GlobalContextCompleteValues>;
 
 export type IsDarkThemeDispatcher = [
@@ -125,8 +123,6 @@ export const initialGlobalStoreValue: GlobalContextValues = {
 const GlobalContext: GlobalContext = createContext<GlobalContextCompleteValues>(
   (initialGlobalStoreValue as unknown) as GlobalContextCompleteValues
 );
-export const GlobalContextConsumer: GlobalContextConsumer =
-  GlobalContext.Consumer;
 export const GlobalContextProvider: GlobalContextProvider =
   GlobalContext.Provider;
 

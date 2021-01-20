@@ -1,4 +1,4 @@
-import React, { FC, useEffect, ReactNode, useContext } from "react";
+import { FC, useEffect, ReactNode, useContext } from "react";
 import { Helmet } from "react-helmet-async";
 import GlobalContext, {
   GlobalContextCompleteValues,
@@ -13,8 +13,10 @@ interface PageProps {
 }
 
 const Page: FC<PageProps> = ({ title, children }: PageProps): JSX.Element => {
-  const { titleDispatcher, isDarkThemeDispatcher }:
-    GlobalContextCompleteValues = useContext(GlobalContext);
+  const {
+    titleDispatcher,
+    isDarkThemeDispatcher,
+  }: GlobalContextCompleteValues = useContext(GlobalContext);
   const [titleLocal, setTitleLocal]: TitleDispatcher = titleDispatcher;
   const [isDarkTheme]: IsDarkThemeDispatcher = isDarkThemeDispatcher;
   const fixedTitle: string = `ZSB Rybnik${
@@ -29,9 +31,7 @@ const Page: FC<PageProps> = ({ title, children }: PageProps): JSX.Element => {
         <title>{fixedTitle}</title>
         <meta name="og:title" content={fixedTitle} />
       </Helmet>
-      <ContentWrapper isDarkTheme={isDarkTheme}>
-        {children}
-      </ContentWrapper>
+      <ContentWrapper isDarkTheme={isDarkTheme}>{children}</ContentWrapper>
     </>
   );
 };

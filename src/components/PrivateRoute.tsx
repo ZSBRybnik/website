@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { Route, Redirect, RouteProps } from "react-router-dom";
 import { useContext, ElementType, createElement } from "react";
 import GlobalContext, {

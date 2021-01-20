@@ -1,4 +1,4 @@
-import React, { FC, ReactNode, useContext } from "react";
+import { FC, ReactNode, useContext } from "react";
 import TableOuter from "./TableOuter";
 import GlobalContext, {
   GlobalContextCompleteValues,
@@ -12,7 +12,7 @@ interface TableProps {
 
 const Table: FC<TableProps> = (props: TableProps): JSX.Element => {
   const { isDarkThemeDispatcher }: GlobalContextCompleteValues = useContext(
-    GlobalContext,
+    GlobalContext
   );
   const [isDarkTheme]: IsDarkThemeDispatcher = isDarkThemeDispatcher;
   return (

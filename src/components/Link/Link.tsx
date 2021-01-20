@@ -1,4 +1,4 @@
-import React, { FC, useContext } from "react";
+import { FC, useContext } from "react";
 import { mdiDownload, mdiShare } from "@mdi/js";
 import Icon from "@mdi/react";
 import GlobalContext, {

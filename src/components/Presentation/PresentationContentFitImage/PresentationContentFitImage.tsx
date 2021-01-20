@@ -1,4 +1,4 @@
-import React, {
+import {
   DetailedHTMLProps,
   ImgHTMLAttributes,
   FC,

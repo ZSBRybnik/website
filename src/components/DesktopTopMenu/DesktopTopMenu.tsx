@@ -1,4 +1,4 @@
-import React, { FC, useContext, useState } from "react";
+import { FC, useContext } from "react";
 import Icon from "@mdi/react";
 import { Link } from "react-router-dom";
 import { iconSize } from "../../other/variables";
@@ -20,7 +20,7 @@ import GlobalContext, {
 import toggleDarkTheme from "../../other/toggleDarkTheme";
 import scrollTop from "../../other/scrollTop";
 
-interface DesktopTopMenuProps { }
+interface DesktopTopMenuProps {}
 
 const DesktopTopMenu: FC<DesktopTopMenuProps> = (): JSX.Element => {
   const { t }: UseTranslationResponse = useTranslation();

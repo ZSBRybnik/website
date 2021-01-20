@@ -1,4 +1,4 @@
-import React, { FC, useContext } from "react";
+import { FC, useContext } from "react";
 import Icon from "@mdi/react";
 import { iconSize } from "../../other/variables";
 import GlobalContext, {
@@ -13,11 +13,13 @@ interface ButtonProps {
   onClick?: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
 }
 
-const Button: FC<ButtonProps> = (
-  { icon, title, onClick }: ButtonProps,
-): JSX.Element => {
+const Button: FC<ButtonProps> = ({
+  icon,
+  title,
+  onClick,
+}: ButtonProps): JSX.Element => {
   const { isDarkThemeDispatcher }: GlobalContextCompleteValues = useContext(
-    GlobalContext,
+    GlobalContext
   );
   const [isDarkTheme] = isDarkThemeDispatcher;
   const iconColor = isDarkTheme ? "#fff" : "#111";

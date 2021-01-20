@@ -26,7 +26,7 @@ import Link from "../components/Link/Link";
 
 type TryRequest = () => Promise<void>;
 type PostTitleDispatcher = [string, Dispatch<SetStateAction<string>>];
-type MarkdownDispatcher = [string, Dispatch<SetStateAction<string>>];
+//type MarkdownDispatcher = [string, Dispatch<SetStateAction<string>>];
 type AuthorDispatcher = [string, Dispatch<SetStateAction<string>>];
 type ParseErrorDispatcher = [boolean, Dispatch<SetStateAction<boolean>>];
 

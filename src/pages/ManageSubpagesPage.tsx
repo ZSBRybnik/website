@@ -1,5 +1,5 @@
 import Page from "../components/Page";
-import React, { FC } from "react";
+import { FC } from "react";
 import Section from "../components/Section";
 import Form from "../components/Form";
 import Select from "../components/Select/Select";

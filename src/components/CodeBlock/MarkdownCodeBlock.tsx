@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import CodeBlock from "./CodeBlock";
 
 interface MarkdownCodeBlockProps {
@@ -6,18 +6,17 @@ interface MarkdownCodeBlockProps {
   className: string;
 }
 
-const MarkdownCodeBlock: FC<MarkdownCodeBlockProps> = (
-  { children, className }: MarkdownCodeBlockProps,
-): JSX.Element => {
+const MarkdownCodeBlock: FC<MarkdownCodeBlockProps> = ({
+  children,
+  className,
+}: MarkdownCodeBlockProps): JSX.Element => {
   let fixedLang: string;
   try {
     fixedLang = className.replace("lang-", "");
   } catch (err) {
     fixedLang = className;
   }
-  return (
-    <CodeBlock value={children} language={fixedLang} />
-  );
+  return <CodeBlock value={children} language={fixedLang} />;
 };
 
 export default MarkdownCodeBlock;

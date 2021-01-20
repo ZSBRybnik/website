@@ -1,14 +1,9 @@
-import React, {
-  FC,
-  ReactNode,
-  SelectHTMLAttributes,
-  DetailedHTMLProps,
-} from "react";
+import { FC, ReactNode, SelectHTMLAttributes, DetailedHTMLProps } from "react";
 import Label from "../Label";
 import SelectWrapper from "./SelectWrapper";
 
-interface SelectboxProps extends
-  DetailedHTMLProps<
+interface SelectboxProps
+  extends DetailedHTMLProps<
     SelectHTMLAttributes<HTMLSelectElement>,
     HTMLSelectElement
   > {
@@ -16,13 +11,15 @@ interface SelectboxProps extends
   label: string;
 }
 
-const Select: FC<SelectboxProps> = (
-  { label, children, ...rest }: SelectboxProps,
-): JSX.Element => {
+const Select: FC<SelectboxProps> = ({
+  label,
+  children,
+  ...rest
+}: SelectboxProps): JSX.Element => {
   return (
     <div>
       <Label>{label}</Label>
-      <SelectWrapper {...rest as SelectHTMLAttributes<HTMLSelectElement>}>
+      <SelectWrapper {...(rest as SelectHTMLAttributes<HTMLSelectElement>)}>
         {children}
       </SelectWrapper>
     </div>

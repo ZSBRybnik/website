@@ -1,10 +1,4 @@
-import React, {
-  FC,
-  useContext,
-  useState,
-  ReactNode,
-  useEffect,
-} from "react";
+import { FC, useContext, useState, ReactNode, useEffect } from "react";
 import GlobalContext, {
   GlobalContextCompleteValues,
   IsMobileDispatcher,
@@ -23,18 +17,19 @@ interface SlideOutMenuCategoryProps {
   children: ReactNode;
 }
 
-const SlideOutMenuCategory: FC<SlideOutMenuCategoryProps> = (
-  { title, onlyForMobile, children }: SlideOutMenuCategoryProps,
-): JSX.Element => {
+const SlideOutMenuCategory: FC<SlideOutMenuCategoryProps> = ({
+  title,
+  onlyForMobile,
+  children,
+}: SlideOutMenuCategoryProps): JSX.Element => {
   const {
     isMobileDispatcher,
     isDarkThemeDispatcher,
     isSlideOutMenuOpenDispatcher,
-  }: GlobalContextCompleteValues = useContext(
-    GlobalContext,
-  );
-  const [isSlideOutMenuOpen]: IsSlideOutMenuOpenDispatcher =
-    isSlideOutMenuOpenDispatcher;
+  }: GlobalContextCompleteValues = useContext(GlobalContext);
+  const [
+    isSlideOutMenuOpen,
+  ]: IsSlideOutMenuOpenDispatcher = isSlideOutMenuOpenDispatcher;
   const [isDarkTheme]: IsDarkThemeDispatcher = isDarkThemeDispatcher;
   const [isMobile]: IsMobileDispatcher = isMobileDispatcher;
   const [isHidden, setIsHidden] = useState(true);
@@ -45,8 +40,8 @@ const SlideOutMenuCategory: FC<SlideOutMenuCategoryProps> = (
   }, [isSlideOutMenuOpen]);
   return (
     <>
-      {(onlyForMobile && isMobile) || !onlyForMobile
-        ? <>
+      {(onlyForMobile && isMobile) || !onlyForMobile ? (
+        <>
           <SlideOutMenuCategoryWrapper
             isDarkTheme={isDarkTheme}
             onClick={(): void => setIsHidden(!isHidden)}
@@ -56,13 +51,13 @@ const SlideOutMenuCategory: FC<SlideOutMenuCategoryProps> = (
             {title}
             <Icon path={isHidden ? mdiArrowDown : mdiArrowUp} size={iconSize} />
           </SlideOutMenuCategoryWrapper>
-          {!isHidden
-            ? <SlideOutMenuCategoryChildrenWrapper isHidden={isHidden}>
+          {!isHidden ? (
+            <SlideOutMenuCategoryChildrenWrapper isHidden={isHidden}>
               {children}
             </SlideOutMenuCategoryChildrenWrapper>
-            : null}
+          ) : null}
         </>
-        : null}
+      ) : null}
     </>
   );
 };

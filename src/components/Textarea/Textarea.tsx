@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import TextareaWrapper from "./TextareaWrapper";
 import Label from "../Label";
 
@@ -7,9 +7,10 @@ interface TextareaProps
   label: string;
 }
 
-const Textarea: FC<TextareaProps> = (
-  { label, ...rest }: TextareaProps,
-): JSX.Element => {
+const Textarea: FC<TextareaProps> = ({
+  label,
+  ...rest
+}: TextareaProps): JSX.Element => {
   return (
     <div>
       <Label>{label}</Label>

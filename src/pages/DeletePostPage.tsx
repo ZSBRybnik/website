@@ -9,7 +9,7 @@ import {
 } from "react";
 import React from "react";
 import Page from "../components/Page";
-import { mdiPlus, mdiPencil, mdiDelete } from "@mdi/js";
+import { /*mdiPlus, mdiPencil,*/ mdiDelete } from "@mdi/js";
 import { toast } from "react-toastify";
 import Button from "../components/Button/Button";
 import Section from "../components/Section";

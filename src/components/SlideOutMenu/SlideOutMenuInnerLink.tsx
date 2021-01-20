@@ -1,5 +1,4 @@
-import React, { FC, useContext, useState } from "react";
-import { Helmet } from "react-helmet-async";
+import React, { FC, useContext } from "react";
 import { Link } from "react-router-dom";
 import GlobalContext, {
   GlobalContextCompleteValues,

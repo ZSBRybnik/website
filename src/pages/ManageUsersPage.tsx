@@ -1,12 +1,5 @@
 import Page from "../components/Page";
-import React, {
-  FC,
-  useEffect,
-  useState,
-  useContext,
-  Dispatch,
-  SetStateAction,
-} from "react";
+import { FC, useEffect, useState, useContext } from "react";
 import Section from "../components/Section";
 import Form from "../components/Form";
 import Select from "../components/Select/Select";
@@ -26,18 +19,18 @@ const ManageUsersPage: FC<ManageUsersPageProps> = (): JSX.Element => {
   const [isMobile] = isMobileDispatcher;
   const title: string = "Zarządzaj użytkownikami";
   const [userAction, setUserAction] = useState("addUser" as UserAction);
-  const [users, setUsers] = useState([]);
-  const [selectedUser, setSelectedUser] = useState("");
+  const [users /*setUsers*/] = useState([]);
+  //const [selectedUser, setSelectedUser] = useState("");
   const [login, setLogin] = useState("");
   const [email, setEmail] = useState("");
   const [role, setRole] = useState("");
   useEffect((): void => {
     const getUsers = async () => {
       try {
-        const res: Response = await fetch(
+        /*const res: Response = await fetch(
           `${process.env.REACT_APP_API_URL}/api/get-users`
-        );
-        const data = await res.json();
+        );*/
+        //const data = await res.json();
       } catch (err) {}
     };
     if (userAction === "editUser" || userAction === "deleteUser") {
@@ -67,7 +60,7 @@ const ManageUsersPage: FC<ManageUsersPageProps> = (): JSX.Element => {
                   ? "Wybierz użytkownika do edycji"
                   : "Wybierz użytkownika do usunięcia"
               }
-              onChange={(e) => {}}
+              onChange={() => {}}
             >
               <option disabled></option>
               {users &&
