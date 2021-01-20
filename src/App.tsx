@@ -1,4 +1,4 @@
-import React, {
+import {
   useState,
   useEffect,
   Dispatch,
@@ -88,12 +88,12 @@ const ManagePostsPage: LazyExoticComponent<FC<ManagePostsPageProps>> = lazy(
 const ManageUsersPage: LazyExoticComponent<FC<ManagePostsPageProps>> = lazy(
   () => import("./pages/ManageUsersPage")
 );
-const ManageSubpagesPage: LazyExoticComponent<FC<
-  ManageSubpagesPageProps
->> = lazy(() => import("./pages/ManageSubpagesPage"));
-const ManageLessonPlanPage: LazyExoticComponent<FC<
-  ManageLessonPlanPageProps
->> = lazy(() => import("./pages/ManageLessonPlanPage"));
+const ManageSubpagesPage: LazyExoticComponent<
+  FC<ManageSubpagesPageProps>
+> = lazy(() => import("./pages/ManageSubpagesPage"));
+const ManageLessonPlanPage: LazyExoticComponent<
+  FC<ManageLessonPlanPageProps>
+> = lazy(() => import("./pages/ManageLessonPlanPage"));
 const AddUsersPage: LazyExoticComponent<FC<AddUsersPageProps>> = lazy(
   () => import("./pages/AddUsersPage")
 );
@@ -167,7 +167,7 @@ const App: FC<AppProps> = ({ i18next }: AppProps): JSX.Element => {
     setPrivilegeLevelLocal,
   ]: PrivilegeLevelDispatcher = useState(privilegeLevel);
   useEffect((): MountedUseEffect => {
-    let timeout: number;
+    let timeout: NodeJS.Timeout;
     const resizeHandler = (): void => {
       const isMobile: boolean = window.innerWidth < 768 ? true : false;
       setIsMobileLocal(isMobile);
